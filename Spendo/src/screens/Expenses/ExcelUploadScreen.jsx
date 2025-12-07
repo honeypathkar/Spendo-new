@@ -11,6 +11,7 @@ import {
 import { FlashList } from '@shopify/flash-list';
 import { useNavigation } from '@react-navigation/native';
 import { Text, Card, Button, ActivityIndicator } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import GlobalHeader from '../../components/GlobalHeader';
 import { useAuth } from '../../hooks/useAuth';
 import { apiClient, parseApiError } from '../../api/client';
@@ -432,9 +433,10 @@ const ExcelUploadScreen = () => {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.select({ ios: 'padding', android: undefined })}>
+    <SafeAreaView edges={['top']} style={styles.container}>
+      <KeyboardAvoidingView
+        style={styles.keyboardView}
+        behavior={Platform.select({ ios: 'padding', android: undefined })}>
       <GlobalHeader
         title="Upload Excel"
         subtitle="Upload and review your expenses"
@@ -639,7 +641,8 @@ const ExcelUploadScreen = () => {
           </View>
         )}
       </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
@@ -647,6 +650,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0F172A',
+  },
+  keyboardView: {
+    flex: 1,
   },
   contentWrapper: {
     flex: 1,

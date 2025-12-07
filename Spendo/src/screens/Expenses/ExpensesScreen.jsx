@@ -50,6 +50,7 @@ import {
   Pencil,
 } from 'lucide-react-native';
 import { TouchableOpacity, TextInput as RNTextInput } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Fonts from '../../../assets/fonts';
 
 const defaultFormState = {
@@ -854,10 +855,11 @@ const ExpensesScreen = () => {
   }
 
   return (
+    <SafeAreaView edges={['top']} style={styles.container}>
     <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.select({ ios: 'padding', android: undefined })}
-    >
+        style={styles.keyboardView}
+        behavior={Platform.select({ ios: 'padding', android: undefined })}
+      >
       <GlobalHeader
         title="Expenses"
         subtitle={
@@ -1676,6 +1678,7 @@ const ExpensesScreen = () => {
         </View>
       </Modal>
     </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
@@ -1683,6 +1686,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0F172A',
+  },
+  keyboardView: {
+    flex: 1,
   },
   listContent: {
     paddingHorizontal: themeAssets.spacing[5],

@@ -3,6 +3,7 @@ import { ActivityIndicator, Image, StyleSheet, Text, View, StatusBar } from 'rea
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import PrimaryButton from '../../components/PrimaryButton';
 import { themeAssets } from '../../theme';
 import { useAuth } from '../../hooks/useAuth';
@@ -29,16 +30,18 @@ const SplashScreen = () => {
           barStyle="light-content"
           backgroundColor={"#0b0f1a"}
         />
-        <LinearGradient
-          colors={['#0b0f1a', '#0a0f1e', '#070c16']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={styles.container}>
-          <View style={styles.loadingContainer}>
-            <Text style={styles.brand}>Spendo</Text>
-            <ActivityIndicator size="large" color="#E8F0FF" style={styles.loader} />
-          </View>
-        </LinearGradient>
+        <SafeAreaView edges={['top']} style={styles.container}>
+          <LinearGradient
+            colors={['#0b0f1a', '#0a0f1e', '#070c16']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.gradient}>
+            <View style={styles.loadingContainer}>
+              <Text style={styles.brand}>Spendo</Text>
+              <ActivityIndicator size="large" color="#E8F0FF" style={styles.loader} />
+            </View>
+          </LinearGradient>
+        </SafeAreaView>
       </>
     );
   }
@@ -51,16 +54,18 @@ const SplashScreen = () => {
           barStyle="light-content"
           backgroundColor={"#0b0f1a"}
         />
-        <LinearGradient
-          colors={['#0b0f1a', '#0a0f1e', '#070c16']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={styles.container}>
-          <View style={styles.loadingContainer}>
-            <Text style={styles.brand}>Spendo</Text>
-            <ActivityIndicator size="large" color="#E8F0FF" style={styles.loader} />
-          </View>
-        </LinearGradient>
+        <SafeAreaView edges={['top']} style={styles.container}>
+          <LinearGradient
+            colors={['#0b0f1a', '#0a0f1e', '#070c16']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.gradient}>
+            <View style={styles.loadingContainer}>
+              <Text style={styles.brand}>Spendo</Text>
+              <ActivityIndicator size="large" color="#E8F0FF" style={styles.loader} />
+            </View>
+          </LinearGradient>
+        </SafeAreaView>
       </>
     );
   }
@@ -71,27 +76,29 @@ const SplashScreen = () => {
         barStyle="light-content"
         backgroundColor={"#0b0f1a"}
       />
-      <LinearGradient
-        colors={['#0b0f1a', '#0a0f1e', '#070c16']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.container}>
-        <Text style={styles.brand}>Spendo</Text>
-        <Image
-          source={{
-            uri: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?q=80&w=1600&auto=format&fit=crop',
-          }}
-          style={styles.hero}
-        />
-        <View style={styles.copy}>
-          <Text style={styles.headline}>Smarter Spending{'\n'}Starts Here.</Text>
-        </View>
-        <View style={styles.cta}>
-          <PrimaryButton title="Sign Up" onPress={() => navigation.navigate('Signup')} style={styles.primary} />
-          <View style={styles.spacer} />
-          <PrimaryButton title="Login" onPress={() => navigation.navigate('Login')} style={styles.primary} />
-        </View>
-      </LinearGradient>
+      <SafeAreaView edges={['top']} style={styles.container}>
+        <LinearGradient
+          colors={['#0b0f1a', '#0a0f1e', '#070c16']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.gradient}>
+          <Text style={styles.brand}>Spendo</Text>
+          <Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?q=80&w=1600&auto=format&fit=crop',
+            }}
+            style={styles.hero}
+          />
+          <View style={styles.copy}>
+            <Text style={styles.headline}>Smarter Spending{'\n'}Starts Here.</Text>
+          </View>
+          <View style={styles.cta}>
+            <PrimaryButton title="Sign Up" onPress={() => navigation.navigate('Signup')} style={styles.primary} />
+            <View style={styles.spacer} />
+            <PrimaryButton title="Login" onPress={() => navigation.navigate('Login')} style={styles.primary} />
+          </View>
+        </LinearGradient>
+      </SafeAreaView>
     </>
   );
 };
@@ -102,6 +109,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000000',
+  },
+  gradient: {
+    flex: 1,
     paddingHorizontal: 24,
     paddingTop: 40,
     paddingBottom: 24,

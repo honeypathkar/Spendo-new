@@ -19,6 +19,7 @@ import { useBottomBar } from '../../context/BottomBarContext';
 import LinearGradient from 'react-native-linear-gradient';
 import { TrendingUp, TrendingDown, UserRound } from 'lucide-react-native';
 import Fonts from '../../../assets/fonts';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const formatMonth = (month) => {
   const [year, monthIndex] = month.split('-');
@@ -267,7 +268,7 @@ const HomeScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.container}>
       <StatusBar backgroundColor="#0F172A" barStyle="light-content" />
       <View style={styles.header}>
         <View>
@@ -425,7 +426,7 @@ const HomeScreen = () => {
 
         </ScrollView>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 

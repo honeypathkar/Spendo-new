@@ -13,6 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { Button, Card, Chip, HelperText, Text } from 'react-native-paper';
 import { StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import TextInputField from '../../components/TextInputField';
 import { Mail, Lock, Sparkles } from 'lucide-react-native';
 import GlobalHeader from '../../components/GlobalHeader';
@@ -124,14 +125,15 @@ const LoginScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.select({ ios: 'padding', android: undefined })}>
-      <LinearGradient
-        colors={['#0b0f1a', '#0a0f1e', '#070c16']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.gradient}>
+    <SafeAreaView edges={['top']} style={styles.container}>
+      <KeyboardAvoidingView
+        style={styles.keyboardView}
+        behavior={Platform.select({ ios: 'padding', android: undefined })}>
+        <LinearGradient
+          colors={['#0b0f1a', '#0a0f1e', '#070c16']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.gradient}>
       <GlobalHeader
           backgroundColor="transparent"
           // showLeftIcon
@@ -294,8 +296,9 @@ const LoginScreen = () => {
               </Button>
           </View>
       </ScrollView>
-      </LinearGradient>
-    </KeyboardAvoidingView>
+        </LinearGradient>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
@@ -305,6 +308,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0F172A',
+  },
+  keyboardView: {
+    flex: 1,
   },
   gradient: {
     flex: 1,

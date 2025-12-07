@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { StatusBar } from 'react-native';
 import { Text, Card } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import GlobalHeader from '../../components/GlobalHeader';
 import { useAuth } from '../../hooks/useAuth';
@@ -137,17 +138,17 @@ const MoneyInScreen = ({ navigation }) => {
 
   if (!token) {
     return (
-      <View style={styles.container}>
+      <SafeAreaView edges={['top']} style={styles.container}>
         <GlobalHeader
           title="Money In"
           subtitle="Log in to track your income"
         />
-      </View>
+      </SafeAreaView>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.container}>
       <StatusBar backgroundColor="#0F172A" barStyle="light-content" />
       <GlobalHeader
         title="Money In History"
@@ -263,7 +264,7 @@ const MoneyInScreen = ({ navigation }) => {
           />
         </View>
       </BottomSheet>
-    </View>
+    </SafeAreaView>
   );
 };
 

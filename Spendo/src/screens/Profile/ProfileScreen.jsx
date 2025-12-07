@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Pressable, StyleSheet, View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Text } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import GlobalHeader from '../../components/GlobalHeader';
 import { useAuth } from '../../hooks/useAuth';
 import { User, Pencil, Wrench, Info, Shield, LogOut, ChevronRight } from 'lucide-react-native';
@@ -61,7 +62,7 @@ const ProfileScreen = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.container}>
       <GlobalHeader
         title="Profile"
         titleColor="#F8FAFC"
@@ -112,7 +113,7 @@ const ProfileScreen = () => {
               </View>
       </Animated.View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
